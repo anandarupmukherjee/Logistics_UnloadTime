@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Details</title>    
+
+    <style>
+        .overall {
+          background-color: tomato;
+          color: rgb(4, 4, 4);
+          padding: 10px;
+        }
+        </style>
+
+    <style>
+        .specific {
+            background-color: rgb(219, 183, 166);
+            color: rgb(3, 0, 0);
+            border:1px solid black;
+            padding: 10px;
+        }
+    </style>
+
+    <style>
+        .report {
+            background-color: rgb(255, 255, 255);
+            color: rgb(22, 3, 100);
+            padding: 10px;
+        }
+    </style>
+
+{% extends "base.html" %}
+{% load static %}
+ </head>
+
+
+<body> 
+
+<!-- {% block page_content %} -->
+<div class="overall">
+    <h1>Meachers Global</h1>
+    <h3>Container Unloading Details for Order ID: {{project.order_id}}</h3>
+</div>
+
+<div class="specific">
+    Order ID: {{project.order_id}}<br>
+    Container No.: {{project.container}} <br>
+    Customer: {{project.customer}} <br>
+    Container size: {{project.size}}<br>
+    Product: {{project.product}}<br>
+    Packages: {{project.packages}}<br>
+    SKUs per package: {{project.sku}}<br>
+</div>
+
+
+<div class="specific">
+    Unloading Date: {{project.date_work}}<br>
+    Start Time: {{project.time_in}}
+    Finish Time: {{project.time_out}} <br>
+    Time taken for container {{project.container}}: {{tot_tim}} mins. <br>
+    Collective break time: {{sum_break}} mins. <br>
+    Effective work time per container: {{effect_work}} mins. <br>
+    Total workers engaged: {{men}} <br>
+    Total person hours: {{tw}} hr.
+</div>
+
+
+<div class="report">
+    Worker-1 Start: {{project.w1_start}} Finish: {{project.w1_stop}} Duration: {{w1_t}}m. Break: {{brk1}}m. <br>
+    Worker-2 Start: {{project.w2_start}} Finish: {{project.w2_stop}} Duration: {{w2_t}}m. Break: {{brk2}}m. <br>
+    Worker-3 Start: {{project.w3_start}} Finish: {{project.w3_stop}} Duration: {{w3_t}}m. Break: {{brk3}}m. <br>
+    Worker-4 Start: {{project.w4_start}} Finish: {{project.w4_stop}} Duration: {{w4_t}}m. Break: {{brk4}}m. <br>
+    Worker-5 Start: {{project.w5_start}} Finish: {{project.w5_stop}} Duration: {{w5_t}}m. Break: {{brk5}}m. <br>
+</div>
+
+{% endblock %}
+
+</body>     
+</html>

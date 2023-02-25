@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>QRC Gen</title>
+   </head>
+   <body>
+	<center>
+	<h1>QR Code Link Generator</h1>
+      <form method="POST">
+         {% csrf_token %}
+         <input type="url" placeholder="URL PLEASE" requir
+ed name="url">
+         <button type= "submit" >get qrcode</button>
+      </form>
+      {% for qr in qr_code %}
+      <img src="{{qr.image.url}}"/><br>
+      {%endfor%}
+   </body>
+</html>

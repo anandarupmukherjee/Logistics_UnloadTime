@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+</head>
+
+
+<body>
+<center>
+<h1>Meachers Global</h1>
+
+<hr/>
+<center>
+<input type="text" id="searchtxt" placeholder="Search Order IDs" onkeyup="searchrecords()">
+<br/>
+<br/>
+<button onclick="location.href= '/export'">Generate Report (CSV)</button>
+<button onclick="location.href= '/'">Home</button>
+<hr/>
+
+
+
+<hr/>
+<h3>Summary Record</h3>
+<table border="1" id ="table1">
+  <tr>
+      <th>Order ID</th>
+      <th>Container</th>
+      <th>Workers</th>
+      <th>Unload time (m)</th>
+      <th>Person hours (hr.)</th>
+  </tr>
+
+{% for buff in buffer %}
+
+
+  <tr>
+    <td>{{buff.order_id}}</td>
+    <td>{{buff.container}}</td>
+    <td>{{buff.workers}}</td>
+    <td>{{buff.unload_time}}</td>
+    <td>{{buff.tw}}</td>    
+</tr>
+
+{%endfor%}
+
+</table>
+
+<script>
+function searchrecords() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchtxt");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table1");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+
+
+
+</body>
+         
+
+
+</html>

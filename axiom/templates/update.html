@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Unload Start </title>
+
+</head>
+
+<body>
+<h1>Report Work Hours (On-site) </h1>
+<form action="" method="POST">
+{% csrf_token %}
+Enter Order ID: <input type="text" name="order_id"/><br/><br/>
+Enter Unique Key: <input type="text" name="id"/><br/><br/>    
+
+<hr>
+
+Unloading Date: 
+<textarea cols="20" rows="1" name="date_work" >{% now "jS F Y" %} </textarea><br/><br/>
+    
+Unloading Start Time:
+<input type="time" id="time_in" name="time_in"><br/><br/>
+
+<!-- Break-start:
+<input type="time" id="time_break_on" name="time_break_on"><br/><br/>
+
+Break_end:
+<input type="time" id="time_break_off" name="time_break_off"><br/><br/> -->
+
+Unloading Finish Time: 
+<input type="time" id="time_out" name="time_out"><br/><br/>
+
+<hr>
+Worker-1 Start: 
+<input type="time" id="w1_start" name="w1_start">
+Break-start:
+<input type="time" id="w1_break_on" name="w1_break_on">
+Break_end:
+<input type="time" id="w1_break_off" name="w1_break_off">
+Worker-1 Stop:
+<input type="time" id="w1_stop" name="w1_stop"><br/><br/>
+
+Worker-2 Start:
+<input type="time" id="w2_start" name="w2_start"> 
+Break-start:
+<input type="time" id="w2_break_on" name="w2_break_on">
+Break_end:
+<input type="time" id="w2_break_off" name="w2_break_off">   
+Worker-2 Stop:
+<input type="time" id="w2_stop" name="w2_stop"><br/><br/>    
+
+Worker-3 Start:
+<input type="time" id="w3_start" name="w3_start">
+Break-start:
+<input type="time" id="w3_break_on" name="w3_break_on">
+Break_end:
+<input type="time" id="w3_break_off" name="w3_break_off">
+Worker-3 Stop:
+<input type="time" id="w3_stop" name="w3_stop"><br/><br/>
+
+Worker-4 Start:
+<input type="time" id="w4_start" name="w4_start">
+Break-start:
+<input type="time" id="w4_break_on" name="w4_break_on">
+Break_end:
+<input type="time" id="w4_break_off" name="w4_break_off">
+Worker-4 Stop:
+<input type="time" id="w4_stop" name="w4_stop"><br/><br/>
+
+Worker-5 Start:
+<input type="time" id="w5_start" name="w5_start">
+Break-start:
+<input type="time" id="w5_break_on" name="w5_break_on">
+Break_end:
+<input type="time" id="w5_break_off" name="w5_break_off">
+Worker-5 Stop:
+<input type="time" id="w5_stop" name="w5_stop"><br/><br/>
+
+<a href="http://0.0.0.0:8000/ok.html">
+<input type="submit" value="Submit"/>
+</a>
+</form>
+
+
+</body>
+
+</html>

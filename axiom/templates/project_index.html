@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Shoestring Track</title>
+
+<style>
+  .overall {
+    background-color: tomato;
+    color: rgb(4, 4, 4);
+    padding: 10px;
+  }
+  </style>
+
+<style>
+  .specific {
+      background-color: rgb(219, 183, 166);
+      color: rgb(3, 0, 0);
+      border:1px solid black;
+      padding: 10px;
+  }
+</style>
+
+<style>
+  .report {
+      background-color: rgb(255, 255, 255);
+      color: rgb(22, 3, 100);
+      padding: 10px;
+  }
+</style>
+</head>
+
+
+<body>
+  <div class="overall">
+  <center>
+  <h1>Meachers Global Logistics</h1>
+</div>
+
+<div class="specific">
+  <center>
+    <h3>Container Unload Time Monitoring</h3>
+  <input type="text" id="searchtxt" placeholder="Search Order IDs" onkeyup="searchrecords()">
+  <input type="text" id="searchtxtcont" placeholder="Search Container Size" onkeyup="searchrecordsCont()">
+  <br/>
+  <br/>
+  <button onclick="location.href= '/createpost'" target="_blank">Initiate New Work</button>
+  <button onclick="location.href= '/summary'" target="_blank">Summary</button>
+  <button onclick="location.href= '/export'" >Generate Report</button>
+  <button onclick="location.href= '/admin'" >Admin Panel</button>
+</center>
+</div>
+
+
+<!-- <div class="specific">
+  <center>
+  <a href="/createpost" target="_blank" style="width:10%;display:block;text-align:center;padding:.5em;
+  background-color:#0073e2;color:#fff;border-radius:4px;box-shadow:0 4px 6px rgba(50,50,93,.11), 
+  0 1px 3px rgba(0,0,0,.08);text-decoration:none">Initiate New Work</a>
+  </center>
+</div> -->
+
+<div class="report">
+  <center>
+    <h3>Records</h3>
+  <table border="1" id ="table1">
+    <tr>
+        <th>Record Timestamp</th>
+        <th>Order ID</th>
+        <th>Container Size</th>
+        <th>Container</th>
+        <th>Work Details</th>
+        <th>Container-wise UT</th>
+        <th>Order-wise UT</th>
+        <th>Supervisor-wise UT</th>
+        <th>Unique Key</th>
+    </tr>
+
+  {% for project in projects %}
+
+
+    <tr>
+      <td>{{project.timestamp}}</td>
+      <td>{{project.order_id}}</td>
+      <td>{{project.size}}</td>
+      <td>{{project.container}}</td>
+      <td><a href="{% url 'project_detail' project.id %}" class="btn btn-primary" target="_blank">Details</a></td>
+      <td><a href="/analysis" class="btn btn-primary" target="_blank">Stats</a></td>
+      <td><a href="/analysis2" class="btn btn-primary" target="_blank">Stats</a></td>
+      <td><a href="/analysis1" class="btn btn-primary" target="_blank">Stats</a></td>  
+      <td>{{project.id}}</td>
+  </tr>
+
+  {%endfor%}
+      
+  </table>
+</div>
+
+<script>
+function searchrecords() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchtxt");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table1");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchrecordsCont() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchtxtcont");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table1");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+
+
+
+</body>
+         
+
+
+</html>
